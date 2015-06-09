@@ -7,8 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<div class="header" id="header">
+<a href="/users/sign_in">Log out</a>
+<p>User name</p>
+</div>
 <%= yield %>
-
+<style type="text/css">
+ .header{
+   position:absolute;
+   top:0;
+   right:0;
+  }
+</style>
 </body>
 </html>
