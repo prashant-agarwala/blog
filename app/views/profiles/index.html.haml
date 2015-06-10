@@ -1,0 +1,9 @@
+%h1 User Profile
+%p Find me in app/views/profiles/index.html.erb
+= form_for :profile do |f|
+  %p
+    = f.email :title
+  %p
+    = f.first_name :text
+  %p
+    = f.last_name :text

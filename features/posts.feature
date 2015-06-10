@@ -10,7 +10,7 @@ Feature: creating a blog post
         | bob@example.com        |
         | alice@example.com      |
       And I sign in as "bob@example.com"
-      And I go to the dashboard page
+      And I am in dashboard page
 
     Scenario: create a text-only post as draft
       Given I click on the create post button

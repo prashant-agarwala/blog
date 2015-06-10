@@ -31,13 +31,13 @@ end
 Then(/^I should see an error message$/) do
   #expect(page).to have_content "Sign up 1 error prohibited this user from being saved: Password confirmation doesn't match Password Email Password (8 characters minimum) Password confirmation Log in"
   #expect(page).to have_content "error prohibited this user from being saved"
-  #page.should have_css('div#error_explanation')
+  page.should have_css('div#error_explanation')
 
 end
 
 Given(/^a user with email "(.*?)" and password "(.*?)"$/) do |arg1, arg2|
-  @user = User.new(:email => arg1, :password => arg2, :password_confirmation => arg2)
-  @user.save
+  Helper_methods.create_user(arg1,arg2)
+
 end
 
 When(/^I sign in manually as "(.*?)" with password "(.*?)"$/) do |arg1, arg2|
@@ -46,6 +46,7 @@ When(/^I sign in manually as "(.*?)" with password "(.*?)"$/) do |arg1, arg2|
        fill_in 'Email', :with => arg1
        fill_in 'Password', :with => arg2
     end
+    click_button 'Log in'
 end
 
 Then(/^I should be on user sign_in page$/) do
@@ -53,11 +54,20 @@ Then(/^I should be on user sign_in page$/) do
 end
 
 Given(/^I am signed in as "(.*?)" with password "(.*?)"$/) do |arg1, arg2|
+  #@user = User.new(:email => arg1, :password => arg2, :password_confirmation => arg2)
+  #@user.save
+  Helper_methods.create_user(arg1,arg2)
+=begin
   visit "/users/sign_in"
   within("#new_user")do
      fill_in 'Email', :with => arg1
      fill_in 'Password', :with => arg2
   end
+  click_button 'Log in'
+=end
+  #step 'I sign in manually as "' + arg1 +'" with password "'+ arg2 + '"'
+  step "I sign in manually as \"#{arg1}\" with password \"#{arg2}\""
+
 end
 
 Given(/^I click on my name in the header$/) do
@@ -67,11 +77,11 @@ Given(/^I click on my name in the header$/) do
 end
 
 Given(/^I follow "(.*?)"$/) do |arg1|
-  within("div#header.header")do
-    click_on('Log out')
+ within("div#header.header")do
+   click_on(arg1)
   end
 end
 
 Then(/^I should be on the home page$/) do
-  visit "/users/sign_in"
+
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :posts
   get 'dashboard/index'
 
   devise_for :users
@@ -7,6 +8,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'dashboard#index'
+
+  resources :profiles
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,0 +1,18 @@
+%h1 User Profile
+%p Find me in app/views/profiles/show.html.erb
+
+= form_for :profile do |f|
+  %p
+    = f.label :email
+    %br
+      = f.text_field :email
+  %p
+    = f.label :first_name
+    %br
+      = f.text_field :first_name
+  %p
+    = f.label :last_name
+    %br
+      = f.text_field :last_name
+  %p
+    = f.submit

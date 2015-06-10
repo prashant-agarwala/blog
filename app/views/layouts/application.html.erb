@@ -7,17 +7,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% if user_signed_in? %>
 <div class="header" id="header">
-<a href="/users/sign_in">Log out</a>
+  <li>
+   <%= link_to('Log out', destroy_user_session_path, :method => :delete) %>
+  </li>
+  <li>
+   <%= link_to('Profile', profile_path(current_user), :method => :get) %>
+  </li>
+  <form action= "/posts/new" >
+    <input type="submit" value="Create Post">
+  </form>
 <p>User name</p>
 </div>
+<% end %>
 <%= yield %>
-<style type="text/css">
- .header{
-   position:absolute;
-   top:0;
-   right:0;
-  }
-</style>
+
 </body>
 </html>
