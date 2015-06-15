@@ -10,7 +10,7 @@ Feature: creating a blog post
         | bob@example.com        |
         | alice@example.com      |
       And I sign in as "bob@example.com"
-      And I am in dashboard page
+      And I am on my dashboard
 
     Scenario: create a text-only post as draft
       Given I click on the create post button
@@ -33,7 +33,8 @@ Feature: creating a blog post
       When I create a blog post as follows:
         | title              | content       |
         | Walk then talk          | My guiding philosophy on developer advocacy. |
-      And I click on the "save" button
+      And I click on the "Save" button
+      And I go to the dashboard page
       Then I should see "Walk then talk" as the first post within ".drafts"
 
     Scenario: cancel a blog post
@@ -42,41 +43,42 @@ Feature: creating a blog post
         | title              | content       |
         | Walk then talk     | My guiding philosophy on developer advocacy. |
       And I click on the "cancel" button
-      Then I should be on my dashboard page
+      Then I should be on the dashboard page
       And I should not see "Walk then talk" post in my dashboard
 
     Scenario: delete one of my posts
-      Given I am on my dashboard
-      And I have a blog post titled "Look at my Dog"
-      And I choose to delete the post titled "Look at my Dog"
+      Given the following posts exist:
+        | title              | content       |
+        | Another post       | Some Content for this post. |
+      And I go to the dashboard page
+      And I choose to delete the post titled "Another post"
       And I go to my dashboard
-      Then I should not see "Look at my Dog" post in my dashboard
+      Then I should not see "Another post" post in my dashboard
 
     Scenario: change post title
       Given I am on my dashboard
-      And I have a blog post as follows:
+      And the following posts exist:
         | title              | content       |
         | Saltwater          | The first thing we did after we landed was go to this new bar called La Caixa. |
       And I choose to edit the post titled "Saltwater"
       Then I should be on the edit post page
       And I change the title to "Saltwater Lakes"
-      And I click on the "save" button
-      Then I should be on "My Dashboard" page
-      And I should see the post titled "Saltwater Lakes"
-      And I should not see any post titled "Saltwater"
-
+      And I click on the "Save" button
+      And I go to the dashboard page
+      And I should see "Saltwater Lakes" as the first post within ".drafts"
+      And I should not see "Saltwater" post in my dashboard
 
     Scenario: change the content of a post
       Given I am on my dashboard
-      And I have a blog post as follows:
+      And the following posts exist:
         | title              | content       |
         | Saltwater          | The first thing we did after we landed was go to this new bar called La Caixa. |
       And I choose to edit the post titled "Saltwater"
       Then I should be on the edit post page
       And I change the content of the post to "The first thing we did after we landed was go to this place called Los Corralillos."
-      And I click on the "save" button
-      Then I should be on "My Dashboard" page
-      And I should see the post titled "Saltwater"
+      And I click on the "Save" button
+      And I go to the dashboard page
+      And I should see "Saltwater" as the first post within ".drafts"
       Then I should click on "Saltwater"
       And I should see the content of the post as "The first thing we did after we landed was go to this place called Los Corralillos."
 

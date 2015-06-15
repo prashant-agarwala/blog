@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :posts
+
   get 'dashboard/index'
 
   devise_for :users
@@ -10,6 +10,15 @@ Rails.application.routes.draw do
   root 'dashboard#index'
 
   resources :profiles
+
+  resources :posts do
+    post :publish
+    get  :display
+  end
+
+
+  #match 'user/eat_chocolate/:id' => 'user#eat_chocolate', :as => :eat_chocolate_user
+  #match 'posts/:id/publish' => 'posts#eat_chocolate', :as => :eat_chocolate_user
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

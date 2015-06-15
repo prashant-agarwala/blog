@@ -59,16 +59,16 @@ Given(/^I visit profile page$/) do
   pending # express the regexp above with the code you wish you had
 end
 
-Then(/^I click on "(.*?)"$/) do |arg1|
+When(/^I click on "(.*?)"$/) do |arg1|
+  click_on(arg1)
+end
+
+When(/^change my first name to "(.*?)" and last name to "(.*?)"$/) do |arg1, arg2|
   pending # express the regexp above with the code you wish you had
 end
 
-Then(/^change my first name to "(.*?)" and last name to "(.*?)"$/) do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^I click on the "(.*?)" button$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+When(/^I click on the "(.*?)" button$/) do |arg1|
+  click_on(arg1) # express the regexp above with the code you wish you had
 end
 
 Then(/^I should be on my profile page$/) do
@@ -79,15 +79,15 @@ Then(/^I should see my first name as "(.*?)" and last name as "(.*?)"$/) do |arg
   pending # express the regexp above with the code you wish you had
 end
 
-When(/^I click on "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
 Then(/^I should be on the "(.*?)" page$/) do |arg1|
   pending # express the regexp above with the code you wish you had
 end
 
 Then(/^I set my new password as "(.*?)"$/) do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^I click on "(.*?)" button$/) do |arg1|
   pending # express the regexp above with the code you wish you had
 end
 

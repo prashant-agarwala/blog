@@ -38,7 +38,7 @@ Feature: Profile
 
   Scenario: I edit profile
     Given I visit profile page
-    Then I click on "Edit Profile"
+    When I click on "Edit Profile"
     And change my first name to "Robert" and last name to "Plant"
     And I click on the "save" button
     Then I should be on my profile page
@@ -50,5 +50,5 @@ Feature: Profile
     When I click on "Change my Password"
     Then I should be on the "change password" page
     And I set my new password as "s3cr3t"
-    And I click on "Change my password"
+    And I click on "Change my password" button
     And I should be redirected to sign_in page

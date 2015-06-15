@@ -1,6 +1,47 @@
 %h1 Dashboard
 %p Find me in app/views/dashboard/index.html.erb
-%ul{:style => "list-style-type:disc"}
-  %li Title | Content
-  %li | I am eating yogurt | I like yogurt |
-  %li | I am eating mango  | I like mango  |
+#drafts.drafts
+  %h2 Listing posts
+  %table
+    %thead
+      %tr
+        %th Title
+        %th Published
+        %th
+        %th
+        %th
+    %tbody
+      - @posts.each do |post|
+        %tr
+          %td
+            = link_to post.title, post
+          %td
+            = link_to 'Show', post
+          %td
+            = link_to 'Edit', edit_post_path(post)
+          %td
+            = link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  %br/
+= link_to 'New Post', new_post_path
+
+#published.published
+  %h2 Published Posts
+  %table
+    %thead
+      %tr
+        %th Title
+        %th Email
+        %th Published
+        %th
+        %th
+    %tbody
+      - @published.each do |post|
+        %tr
+          %td
+            = link_to post.title, post
+          %td
+            = post.email
+          %td
+            = post.published
+          %td
+            = link_to 'Show', post_display_path(post)

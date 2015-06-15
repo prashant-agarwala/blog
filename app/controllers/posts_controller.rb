@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.order(updated_at: :desc)
   end
 
   # GET /posts/1
@@ -21,10 +21,22 @@ class PostsController < ApplicationController
   def edit
   end
 
+  def publish
+    @post = Post.find(params[:post_id])
+    @post.published = true
+    @post.save
+    redirect_to "/"
+  end
+
+  def display
+    @published = Post.find(params[:post_id])
+  end
+
   # POST /posts
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
 
     respond_to do |format|
       if @post.save

@@ -10,15 +10,18 @@
 <% if user_signed_in? %>
 <div class="header" id="header">
   <li>
-   <%= link_to('Log out', destroy_user_session_path, :method => :delete) %>
+   <%= link_to('Home', dashboard_index_path, :method => :get) %>
   </li>
   <li>
    <%= link_to('Profile', profile_path(current_user), :method => :get) %>
   </li>
+  <li>
+   <%= link_to('Log out', destroy_user_session_path, :method => :delete) %>
+  </li>
   <form action= "/posts/new" >
     <input type="submit" value="Create Post">
   </form>
-<p>User name</p>
+  <div class="field" name="user_name" value = current_user.email></div>
 </div>
 <% end %>
 <%= yield %>
